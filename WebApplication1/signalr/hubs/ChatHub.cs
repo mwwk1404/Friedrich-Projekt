@@ -11,6 +11,7 @@ namespace WebApplication1.signalr.hubs
         public void Send(string name, string message)
         {
             Clients.All.addnewMessagetoPage(name, message);
+           
         }
     }
 }
