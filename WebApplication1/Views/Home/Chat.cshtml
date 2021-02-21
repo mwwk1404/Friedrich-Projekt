@@ -45,7 +45,7 @@
             chat.client.addNewMessageToPage = function (name, message) {
                 if (name = displayname) {
 
-                    $('#discussion').append('<p style="color:black; text-align:left; width:500px"><strong> displayname: '
+                    $('#discussion').append('<p style="color:black; text-align:left; width:500px"><strong>' + $('#displayname')
                         + ' </strong> ' + htmlEncode(message) + '</p>');
                 }
                 //else if (name != "Moritz") {
@@ -59,6 +59,7 @@
 
 
             var displayname = $('#displayname');
+            
 
 
 
