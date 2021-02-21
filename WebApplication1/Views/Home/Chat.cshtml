@@ -38,48 +38,38 @@
     <script src="~/signalr/hubs"></script>
 
     <script>
-        $(function () {
 
-            var chat = $.connection.chatHub;
+            $(function () {
 
-            chat.client.addNewMessageToPage = function (name, message) {
-                if (name = displayname) {
+                var chat = $.connection.chatHub;
 
-                    $('#discussion').append('<p style="color:black; text-align:left; width:500px"><strong>' + $('#displayname')
-                        + ' </strong> ' + htmlEncode(message) + '</p>');
-                }
-                //else if (name != "Moritz") {
-                //    // Add the message to the page.
-                //    $('#discussion').append('<p style="color:blue;text-align:right;"><strong>< title=<%= displayname %>>'
-                //        + ' </strong> ' + htmlEncode(message) + '</p>');
-                //}
-            };
+                chat.client.addNewMessageToPage = function (name, message) {
 
-            $('#displayname').val(prompt('Gib deinen Namen ein:', ''));
+                $('#discussion').append('<p style="color:black; width:500px">' + htmlEncode(name)
+                    + ':' + ' </strong> ' + htmlEncode(message) + '</p>');
+
+                };
 
 
-            var displayname = $('#displayname');
-            
+                $('#displayname').val(prompt('Hier Namen eingeben:', ''));
 
+                $('#message').focus();
 
-
-
-            $('#message').focus();
-
-            $.connection.hub.start().done(function () {
+                $.connection.hub.start().done(function () {
                 $('#sendmessage').click(function () {
 
                     chat.server.send($('#displayname').val(), $('#message').val());
 
                     $('#message').val('').focus();
                 });
+                });
             });
-        });
 
-        function htmlEncode(value) {
-            var encodedValue = $('<div />').text(value).html();
-            return encodedValue;
-        }
+            function htmlEncode(value) {
+                var encodedValue = $('<div />').text(value).html();
+                return encodedValue;
+            }
+    
     </script>
 }
 
